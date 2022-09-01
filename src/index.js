@@ -2,42 +2,48 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/main.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import NavBar from './components/navbar/Navbar';
 
 import {
     BrowserRouter as Router,
     Switch,
     Route
 } from 'react-router-dom'
-import HomePage from './components/home/Home';
-import SignUpPage from './components/SignUp/SignUp';
-import LoginPage from './components/login/Login';
+import SignUpPage from './pages/SignUp/SignUp';
+import LoginPage from './pages/login/Login';
+import Property from './pages/property/Property';
+import Home from './pages/home/Home';
 
 
 
 
-const App=()=>{
+const App = () => {
 
-    
+
     return (
         <Router>
-        <div className="">
-            <NavBar/>
-            <Switch>
-                <Route path="/login">
-                    <LoginPage/>
-                </Route>
-                <Route path="/signup">
-                    <SignUpPage/>                
-                </Route>    
-                <Route path="/">
-                    <HomePage/>
-                </Route>
-            </Switch>
-        </div>
+            <div className="">
+                <Switch>
+                    <Route path="/login">
+                        <LoginPage />
+                    </Route>
+                    <Route path="/signup">
+                        <SignUpPage />
+                    </Route>
+                    <Route path="/addproperty">
+                        <Property />
+                    </Route>
+                    <Route path="/">
+                        <Home/>
+                    </Route>
+                    <Route path="/login">
+                        <Property />
+                    </Route>
+                </Switch>
+
+            </div>
         </Router>
     )
 }
 
 
-ReactDOM.render(<App/>,document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

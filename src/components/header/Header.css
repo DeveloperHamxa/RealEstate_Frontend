@@ -1,0 +1,17 @@
+.header{
+    background: transparent;
+    height: 110px;
+}
+.nav-link{
+    color: #444744;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 15px;
+}
+
+.button{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    margin-top: 15px;
+}
