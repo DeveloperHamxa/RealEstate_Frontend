@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { login } from '../../auth'
-import { useHistory } from 'react-router-dom'
 import './Login.css'
-import loginpic from './login.png';
+import { useNavigate } from "react-router-dom";
+import { Redirect } from 'react-router';
+import loginpic from '../../assets/images/login.png';
 import Header from '../../components/header/Header'
 
 
@@ -14,36 +15,35 @@ const LoginPage = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
-    const history = useHistory()
+    const navigate = useNavigate();
 
 
 
     const loginUser = (data) => {
 
-        // const body = {
-        //     email: data.email,
-        //     password: data.password
-        // }
-        // console.log(body)
+        const body = {
+            email: data.email,
+            password: data.password
+        }
         const requestOptions = {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(body)
         }
 
         fetch('/login', requestOptions)
             .then(res => res.json())
             .then(data => {
-                console.log(data.token)
+                console.log(data)
 
-                if (data) {
-                    login(data.token)
-
+                if (body.email == data.data.user.email) {
+                    navigate("/");
+                    console.log('user logged in')
                 }
-                else {
-                    alert('Invalid username or password')
+                else{
+                    navigate("/signup");
                 }
 
 
@@ -59,7 +59,7 @@ const LoginPage = () => {
                 <div className="form">
                     <div className='row'>
                         <div className='col-lg-6'>
-                            <h1>Sign in</h1>
+                            <h1 className='heading1'>Sign in</h1>
                             <form >
                                 <Form.Group className='a'>
                                     <Form.Label className='inputfield'>Email</Form.Label>

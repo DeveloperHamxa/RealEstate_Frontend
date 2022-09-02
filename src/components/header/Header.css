@@ -1,13 +1,11 @@
-.header{
-    background: transparent;
-    height: 110px;
-}
+
 .nav-link{
     color: #444744;
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
-    font-weight: 700;
+    font-weight: 400;
     margin: 15px;
+    cursor: pointer;
 }
 
 .button{

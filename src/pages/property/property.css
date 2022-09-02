@@ -10,3 +10,8 @@
 .signupbutton{
     width: 150px;
 }
+@media screen and (max-width: 480px) {
+    .heading1 {
+        font-size: 30px;
+    }
+  }

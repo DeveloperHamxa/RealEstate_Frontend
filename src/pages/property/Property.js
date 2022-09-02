@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Form, Button, Alert } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import property from './property.png';
+import property from '../../assets/images/property.png';
 import { useForm } from 'react-hook-form'
 import Header from '../../components/header/Header';
+import './Property.css'
 
 
 export default function Property() {
@@ -16,7 +16,7 @@ export default function Property() {
             console.log(data)
 
             const body = {
-                ptitle: data.ptitle,
+                name: data.name,
                 location: data.location,
                 ptype: data.ptype,
                 ftype: data.ftype,
@@ -68,20 +68,20 @@ export default function Property() {
                                     </p>
                                 </Alert>
 
-                                <h1>Add your property</h1>
+                                <h1 className='heading1'>Add your property</h1>
 
                             </>
                             :
-                            <h1>Add your property</h1>
+                            <h1 className='heading1'>Add your property</h1>
 
                         }
                         <form>
                             <Form.Group>
                                 <Form.Label className='a'>Property Title</Form.Label>
                                 <Form.Control type="text"
-                                    placeholder="Your First Name"
+                                    placeholder="Your Property Name"
                                     className='a'
-                                    {...register("ptitle", { required: true, maxLength: 25 })}
+                                    {...register("name", { required: true, maxLength: 25 })}
                                 />
 
                                 {errors.ptitle && <small style={{ color: "red" }}>Property Title is required</small>}

@@ -3,10 +3,10 @@ import { Form, Button } from 'react-bootstrap'
 import './Hero.css'
 import Typewriter from 'typewriter-effect';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 import { useForm } from 'react-hook-form'
-import Cards from '../card/Card';
+import { useEffect } from 'react';
 
 
 
@@ -15,7 +15,9 @@ export default function Hero() {
 
     const [show, setShow] = useState(false)
     const [serverResponse, setServerResponse] = useState('')
-    const [property, setProperty] = useState('')
+    const [property, setProperty] = useState([])
+
+    let navigate = useNavigate();
 
 
     const submitForm = (data) => {
@@ -27,17 +29,13 @@ export default function Hero() {
                 'content-type': 'application/json'
             },
             body: JSON.stringify(data)
-
         }
-
-
         fetch('/property', requestOptions)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                const data2 = [{ name: data.result.name }]
-                console.log(data2)
-                setProperty(data.result.name)
+                setProperty([data.result.name])
+                console.log(setProperty)
                 setServerResponse(data.message)
                 setShow(true)
             })
@@ -73,11 +71,17 @@ export default function Hero() {
                                         />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Button as="sub"  variant="primary" className='btn btn-md searchbtn' onClick={handleSubmit(submitForm)}>Search</Button>
-                                        <Button variant="outline-light" className="btn btn-md searchbtn2" onClick={(e) => {
-                                            e.preventDefault();
-                                            window.location.href = '/addproperty';
-                                        }}>Add Property</Button>
+
+                                        <div>
+                                            <Button as="sub" variant="primary" className='btn btn-md searchbtn' onClick={handleSubmit(submitForm)}>Search</Button>
+                                           {property.map((items)=>{
+                                                <h1></h1>
+                                            })}
+                                            
+                                            <Button variant="outline-light" className="btn btn-md searchbtn2"  onClick={()=>navigate("/addproperty")}>Add Property</Button>
+                                        </div>
+
+
                                     </Form.Group>
                                 </div>
                             </div>
@@ -89,5 +93,4 @@ export default function Hero() {
         </div>
 
     )
-
 }
