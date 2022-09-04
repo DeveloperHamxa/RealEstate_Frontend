@@ -20,7 +20,7 @@ export default function Header() {
                             <a className="nav-link" onClick={()=>navigate("/addproperty")}>Add Property</a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" onClick={()=>navigate("/allproperty")}>About</a>
+                            <a className="nav-link" onClick={()=>navigate("/allproperty")}>Property</a>
                         </li>
                     </ul>
                 </div>

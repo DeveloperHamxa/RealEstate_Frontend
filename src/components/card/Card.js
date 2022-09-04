@@ -1,23 +1,48 @@
 import React from 'react'
 import './Card.css'
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 
 export default function Cards(props) {
-    console.log("Props", props)
+  console.log("Props", props)
 
-    return (
+  return (
 
-        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
-      <Card.Body>
-        <Card.Title>{props.name}</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
-      </Card.Body>
-    </Card>
-    )
+    <div className="container">
+      <div className="box">
+        <div className="top">
+          <img src={props.data.image} alt="" />
+        </div>
+        <div className="bottom">
+          <h3>{props.data.name}</h3>
+          <p>
+            {props.data.name}
+          </p>
+          <p>
+            <i class="fa fa-map-marker " aria-hidden="true"></i> {props.data.location}
+          </p>
+          <div className="advants">
+            <div>
+              <span>Bedrooms</span>
+              <div><i className="fas fa-th-large"></i><span>3</span></div>
+            </div>
+            <div>
+              <span>Bathrooms</span>
+              <div><i className="fas fa-shower"></i><span>3</span></div>
+            </div>
+            <div>
+              <span>Area</span>
+              <div>
+                <i className="fas fa-vector-square"></i
+                ><span> {props.data.area}<span>Sq Ft</span></span>
+              </div>
+            </div>
+          </div>
+          <div className="price">
+            <span>For Sale</span>
+            <span>PKR {props.data.price}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  )
 }

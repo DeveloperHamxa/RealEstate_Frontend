@@ -1,23 +1,23 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { Link, useHistory } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { login } from '../../auth'
 import './Login.css'
 import { useNavigate } from "react-router-dom";
-import { Redirect } from 'react-router';
 import loginpic from '../../assets/images/login.png';
 import Header from '../../components/header/Header'
 
 
 
-const LoginPage = () => {
+const LoginPage = (props) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
     const navigate = useNavigate();
 
 
+    const [token, setToken] = useState();
 
     const loginUser = (data) => {
 
@@ -39,11 +39,15 @@ const LoginPage = () => {
                 console.log(data)
 
                 if (body.email == data.data.user.email) {
+                    login(data.data.token)
+                    if (data.data.token) {
+                            window.localStorage.setItem("loginToken", data.data.token)
+                    }
                     navigate("/");
                     console.log('user logged in')
                 }
-                else{
-                    navigate("/signup");
+                else {
+                    alert('Not')
                 }
 
 
@@ -106,5 +110,4 @@ const LoginPage = () => {
         </div>
     )
 }
-
 export default LoginPage

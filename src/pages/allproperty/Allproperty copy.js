@@ -4,7 +4,6 @@ import { Form, Button } from 'react-bootstrap'
 import { AiOutlineSearch } from 'react-icons/ai';
 import Header from '../../components/header/Header';
 import Card from '../../components/card/Card';
-import axios from 'axios';
 
 
 export default function Searchproperty() {
@@ -12,15 +11,16 @@ export default function Searchproperty() {
   const [property, setProperty] = useState([])
   const [searchItem, setSearchItem] = useState()
 
-  const axios = require('axios');
+  const getProperty = async () => {
+    const response = await fetch("/https://jsonplaceholder.typicode.com/todos/5");
+    const data = await response.json()
+    console.log(data)
+    setProperty(data.result);
 
-  
+  }
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts').then(resp => {
-
-    setProperty(resp.data.title);
-  });
+    getProperty();
   }, []);
   console.log(property)
 
@@ -46,7 +46,13 @@ export default function Searchproperty() {
       </div>
       <div className='container-fluid'>
         <div className="row">
-          {property.map((items) => {
+          {property.filter((val)=> {
+            if(searchItem == ""){
+              return val
+            }else if (val.name.toLowerCase().includes(searchItem.toLowerCase())){
+              return val
+            }
+          }).map((items) => {
             return (
               <div className="col-lg-3">
                 <Card data={items} />

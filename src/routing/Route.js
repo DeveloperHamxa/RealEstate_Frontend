@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {
     BrowserRouter as Router,
     Route,
@@ -14,6 +14,9 @@ import Home from '../pages/home/Home'
 
 
 export default function Routing() {
+    const[token, setToken] = useState('')
+    const logToken = window.localStorage.getItem("loginToken")
+    console.log("logToken", logToken);
     return (
         <Router>
             <div className="">
